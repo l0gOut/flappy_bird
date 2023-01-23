@@ -23,8 +23,8 @@ const imageBird = {
 };
 
 const birdCoord = {
-  x: canvas.width / 2,
-  y: canvas.height / 2,
+  x: Math.floor(canvas.width / 2),
+  y: Math.floor(canvas.height / 2),
 };
 
 const flyPX = 35;
@@ -34,6 +34,8 @@ const SPEED = 3.1;
 let index = 0;
 
 const pipes = [];
+
+let score = 0;
 
 document.addEventListener("keyup", () => {
   birdCoord.y -= flyPX;
@@ -56,7 +58,7 @@ const render = () => {
 img.onload = render;
 
 function drawBackground(index) {
-  const backgroundX = -((index * SPEED) % canvas.width);
+  const backgroundX = Math.floor(-((index * SPEED) % canvas.width));
 
   const backgroundCord = {
     x: 0,
@@ -151,7 +153,7 @@ function drawBackground(index) {
 }
 
 function drawRoad(index) {
-  const backgroundX = -((index * SPEED) % canvas.width);
+  const backgroundX = Math.floor(-((index * SPEED) % canvas.width));
 
   const roadCord = {
     x: imageBackground.x,
@@ -256,7 +258,7 @@ function drawPipe() {
   );
 
   pipes.forEach(coord => {
-    const backgroundX = -((index * SPEED) % canvas.width);
+    const backgroundX = Math.floor(-((index * SPEED) % canvas.width));
 
     const coordPipe = {
       x: 500,
@@ -323,6 +325,11 @@ function drawPipe() {
       birdCoord.y + imageBird.y >= canvas.height - imageRoad.y
     ) {
       location.reload();
+    }
+
+    if (birdCoord.x == bgPipeResult.x + 70) {
+      score += 1;
+      console.log(score);
     }
   });
 }
