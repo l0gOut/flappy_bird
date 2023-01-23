@@ -281,7 +281,7 @@ function drawPipe() {
 
     const bgPipeTwoResult = {
       x: backgroundX + canvas.width,
-      y: -700 + coord + flyPX + 0,
+      y: -700 + coord + flyPX,
       width: 54,
       height: 700,
     };
@@ -317,9 +317,12 @@ function drawPipe() {
       (birdCoord.x + imageBird.x >= bgPipeResult.x &&
         birdCoord.y + imageBird.y >= bgPipeResult.y &&
         birdCoord.x + imageBird.y <= bgPipeResult.x + 70) ||
+      (birdCoord.x + imageBird.x >= bgPipeResult.x &&
+        birdCoord.y <= bgPipeResult.y - flyPX * 3 &&
+        birdCoord.x + imageBird.y <= bgPipeResult.x + 70) ||
       birdCoord.y + imageBird.y >= canvas.height - imageRoad.y
     ) {
-      console.log("loose");
+      location.reload();
     }
   });
 }
